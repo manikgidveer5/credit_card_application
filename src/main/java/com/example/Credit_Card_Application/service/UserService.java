@@ -24,7 +24,7 @@ public class UserService {
         try {
             return userRepository.findById(id);
         } catch (Exception e) {
-            throw new CardNotFoundException("User not found with ID: " + id);
+            throw new UserNotFoundException("User not found with ID: " + id);
         }
     }
 

@@ -1,13 +1,10 @@
 package com.example.Credit_Card_Application.model;
 
 
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "card")
+@Table(name = "card", schema = "credit_card")
 public class Card {
 
     @Id
@@ -30,8 +27,8 @@ public class Card {
 
     private int cvv;
 
-    @ManyToOne
-    @JoinColumn(name = "card_holder_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "card_holder_id", referencedColumnName = "card_holder_id")
     private CardHolderDetails cardHolderDetails;
 
     public Card() {
@@ -98,5 +95,18 @@ public class Card {
 
     public void setCardHolderDetails(CardHolderDetails cardHolderDetails) {
         this.cardHolderDetails = cardHolderDetails;
+    }
+
+    @Override
+    public String toString() {
+        return "Card{" +
+                "cardID=" + cardID +
+                ", cardNumber=" + cardNumber +
+                ", cardName='" + cardName + '\'' +
+                ", cardType=" + cardType +
+                ", expiryDate='" + expiryDate + '\'' +
+                ", cvv=" + cvv +
+                ", cardHolderDetails=" + cardHolderDetails +
+                '}';
     }
 }
